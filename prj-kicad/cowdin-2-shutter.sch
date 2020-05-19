@@ -1,0 +1,146 @@
+EESchema Schematic File Version 4
+LIBS:cowdin-2-shutter-cache
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "CowDIN 2 Shutter"
+Date "2020-05-19"
+Rev "1"
+Comp "Agilack"
+Comment1 "CC-by-SA"
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L cowdin-2-shutter:CONN_3 P1
+U 1 1 5EC3E1BD
+P 1000 3700
+F 0 "P1" H 1000 3350 60  0000 C CNN
+F 1 "CONN_3" V 1000 3700 40  0000 C CNN
+F 2 "" H 1000 3700 60  0001 C CNN
+F 3 "" H 1000 3700 60  0000 C CNN
+	1    1000 3700
+	-1   0    0    1   
+$EndComp
+$Comp
+L cowdin-2-shutter:CONN_3 P3
+U 1 1 5EC3E2B2
+P 1000 3000
+F 0 "P3" H 1000 2650 60  0000 C CNN
+F 1 "CONN_3" V 1000 3000 40  0000 C CNN
+F 2 "" H 1000 3000 60  0001 C CNN
+F 3 "" H 1000 3000 60  0000 C CNN
+	1    1000 3000
+	-1   0    0    1   
+$EndComp
+$Comp
+L cowdin-2-shutter:CONN_3 P2
+U 1 1 5EC3E5BD
+P 10700 3700
+F 0 "P2" H 10700 3350 60  0000 C CNN
+F 1 "CONN_3" V 10700 3700 40  0000 C CNN
+F 2 "cowdin-2-shutter:CONN_691411710003" H 10700 3700 60  0001 C CNN
+F 3 "" H 10700 3700 60  0000 C CNN
+	1    10700 3700
+	1    0    0    1   
+$EndComp
+$Comp
+L cowdin-2-shutter:CONN_3 P4
+U 1 1 5EC3E6B7
+P 10700 3000
+F 0 "P4" H 10700 2650 60  0000 C CNN
+F 1 "CONN_3" V 10700 3000 40  0000 C CNN
+F 2 "cowdin-2-shutter:CONN_691411710003" H 10700 3000 60  0001 C CNN
+F 3 "" H 10700 3000 60  0000 C CNN
+	1    10700 3000
+	1    0    0    1   
+$EndComp
+$Comp
+L cowdin-2-shutter:RELAY RL1
+U 1 1 5EC401D4
+P 8500 4950
+F 0 "RL1" H 8300 4650 50  0000 C CNN
+F 1 "RELAY" H 8300 5200 50  0000 C CNN
+F 2 "cowdin-2-shutter:RL_3451" H 8500 4950 50  0001 C CNN
+F 3 "" H 8500 4950 50  0000 C CNN
+	1    8500 4950
+	1    0    0    1   
+$EndComp
+$Comp
+L cowdin-2-shutter:RELAY RL2
+U 1 1 5EC4025E
+P 8500 4150
+F 0 "RL2" H 8300 4450 50  0000 C CNN
+F 1 "RELAY" H 8300 3900 50  0000 C CNN
+F 2 "cowdin-2-shutter:RL_3451" H 8500 4150 50  0001 C CNN
+F 3 "" H 8500 4150 50  0000 C CNN
+	1    8500 4150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10350 3550 8600 3550
+Wire Wire Line
+	8600 3550 8600 3850
+Wire Wire Line
+	10350 3700 8800 3700
+Wire Wire Line
+	8800 3700 8800 3850
+Wire Wire Line
+	9700 5350 9700 3850
+Wire Wire Line
+	9700 3850 10350 3850
+$Comp
+L cowdin-2-shutter:RELAY RL3
+U 1 1 5EC4081D
+P 8500 2550
+F 0 "RL3" H 8300 2850 50  0000 C CNN
+F 1 "RELAY" H 8300 2300 50  0000 C CNN
+F 2 "cowdin-2-shutter:RL_3451" H 8500 2550 50  0001 C CNN
+F 3 "" H 8500 2550 50  0000 C CNN
+	1    8500 2550
+	1    0    0    1   
+$EndComp
+$Comp
+L cowdin-2-shutter:RELAY RL4
+U 1 1 5EC40915
+P 8500 1750
+F 0 "RL4" H 8300 2050 50  0000 C CNN
+F 1 "RELAY" H 8300 1500 50  0000 C CNN
+F 2 "cowdin-2-shutter:RL_3451" H 8500 1750 50  0001 C CNN
+F 3 "" H 8500 1750 50  0000 C CNN
+	1    8500 1750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10350 2850 10150 2850
+Wire Wire Line
+	10350 3000 9950 3000
+Wire Wire Line
+	9950 3000 9950 1350
+Wire Wire Line
+	9950 1350 8800 1350
+Wire Wire Line
+	8800 1350 8800 1450
+Wire Wire Line
+	8600 1150 10150 1150
+Wire Wire Line
+	10150 1150 10150 2850
+Wire Wire Line
+	8600 1150 8600 1450
+Wire Wire Line
+	8700 4450 8700 4650
+Wire Wire Line
+	9700 5350 8800 5350
+Wire Wire Line
+	8800 5350 8800 5250
+Wire Wire Line
+	8700 2050 8700 2250
+NoConn ~ 8600 2850
+Wire Wire Line
+	8800 2850 8800 3150
+Wire Wire Line
+	8800 3150 10350 3150
+$EndSCHEMATC
