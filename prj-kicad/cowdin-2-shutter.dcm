@@ -1,5 +1,9 @@
 EESchema-DOCLIB  Version 2.0
 #
+$CMP D_Schottky
+D Diode schottky
+$ENDCMP
+#
 $CMP RELAY
 D FINDER 34.51, Ultra Slim Relay, 5mm 6A
 K Single Pole Relay

@@ -1,0 +1,16 @@
+(module SMD1210 (layer F.Cu) (tedit 5AF8023A)
+  (attr smd)
+  (fp_text reference SM1210 (at 0 -0.6) (layer F.SilkS)
+    (effects (font (size 0.762 0.762) (thickness 0.1016)))
+  )
+  (fp_text value Val** (at 0 0.7) (layer F.SilkS) hide
+    (effects (font (size 0.762 0.762) (thickness 0.127)))
+  )
+  (pad 1 smd rect (at -1.6 0) (size 1.6 2.9) (layers F.Cu F.Paste F.Mask))
+  (pad 2 smd rect (at 1.6 0) (size 1.6 2.9) (layers F.Cu F.Paste F.Mask))
+  (model smd/chip_cms.wrl
+    (at (xyz 0 0 0))
+    (scale (xyz 0.17 0.16 0.16))
+    (rotate (xyz 0 0 0))
+  )
+)
