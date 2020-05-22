@@ -4,6 +4,11 @@ $CMP D_Schottky
 D Diode schottky
 $ENDCMP
 #
+$CMP Q_NMOS
+D Transistor N-MOSFET
+K nmos mosfet transistor
+$ENDCMP
+#
 $CMP RELAY
 D FINDER 34.51, Ultra Slim Relay, 5mm 6A
 K Single Pole Relay
