@@ -16,31 +16,35 @@
 CROSS=arm-none-eabi-
 TARGET=cowdin-shutter
 
-SRC  = main.c
+SRC  = main.c hardware.c inputs.c relay.c time.c
 ASRC = startup.s
+
+BUILDDIR = build
 
 CC = $(CROSS)gcc
 OC = $(CROSS)objcopy
 OD = $(CROSS)objdump
-EDBG = sudo /opt/edbg/edbg
+EDBG = sudo edbg
 
 CFLAGS  = -mcpu=cortex-m0plus -mthumb
 CFLAGS += -nostdlib -Os -ffunction-sections
 CFLAGS += -fno-builtin-memset -fno-builtin-memcpy
+CFLAGS += -Isrc
 CFLAGS += -pedantic -Wall -Wextra -Wstrict-prototypes
-CFLAGS += -DTARGET_NMEA2K_R02
+CFLAGS += -Wimplicit -Wcast-align -Wpointer-arith -Wswitch
+CFLAGS += -Wredundant-decls -Wreturn-type -Wshadow -Wunused
 CFLAGS += -g
 
-LDFLAGS = -nostartfiles -T cowdin-shutter.ld -Wl,-Map=$(TARGET).map,--cref,--gc-sections -static
+LDFLAGS  = -nostartfiles -T src/cowdin-shutter.ld
+LDFLAGS += -Wl,-Map=$(TARGET).map,--cref,--gc-sections
+LDFLAGS += -static
 
-_COBJ =  $(SRC:.c=.o)
-COBJ = $(patsubst %, %,$(_COBJ))
-_AOBJ =  $(ASRC:.s=.o)
-AOBJ = $(patsubst %, %,$(_AOBJ))
+COBJ = $(patsubst %.c, $(BUILDDIR)/%.o,$(SRC))
+AOBJ = $(patsubst %.s, $(BUILDDIR)/%.o,$(ASRC))
 
 ## Directives ##################################################################
 
-all: $(AOBJ) $(COBJ)
+all: $(BUILDDIR) $(AOBJ) $(COBJ)
 	@echo "  [LD] $(TARGET)"
 	@$(CC) $(CFLAGS) $(LDFLAGS) -o $(TARGET).elf $(AOBJ) $(COBJ)
 	@echo "  [OC] $(TARGET).bin"
@@ -52,23 +56,24 @@ clean:
 	@echo "  [RM] $(TARGET).*"
 	@rm -f $(TARGET).elf $(TARGET).map $(TARGET).bin $(TARGET).dis
 	@echo "  [RM] Temporary object (*.o)"
-	@rm -f *.o
-	@rm -f *~ doc/*~
-	@echo "  [RM] Clean documentation files"
-	@rm -rf doc/html
+	@rm -f $(BUILDDIR)/*.o
+	@rm -f *~
 
-$(AOBJ) : %.o : %.s
+mrproper: clean
+	@echo "  [RM] $(BUILDDIR)"
+	@rm -rf $(BUILDDIR)
+
+$(BUILDDIR):
+	@echo "  [MKDIR] $@"
+	@mkdir build
+
+$(AOBJ) : $(BUILDDIR)/%.o : src/%.s
 	@echo "  [AS] $@"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(COBJ) : %.o: %.c
+$(COBJ) : $(BUILDDIR)/%.o: src/%.c
 	@echo "  [CC] $@"
 	@$(CC) $(CFLAGS) -c $< -o $@
-
-.PHONY: doc
-doc:
-	@echo "[DOXYGEN] doc/doxygen.cfg"
-	@cd doc; doxygen doxygen.cfg
 
 # Use ataradov/edbg program to load the firmware using CMSIS-DAP probe
 load:

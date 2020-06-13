@@ -15,53 +15,56 @@
  */
 #ifndef HARDWARE_H
 #define HARDWARE_H
+#include "types.h"
 
 /* AHB-APB Bridge A */
-#define PAC0_ADDR    ((unsigned long)0x40000000)
-#define PM_ADDR      ((unsigned long)0x40000400)
-#define MCLK_ADDR    ((unsigned long)0x40000800)
-#define RSTC_ADDR    ((unsigned long)0x40000C00)
-#define OSC_ADDR     ((unsigned long)0x40001000)
-#define OSC32_ADDR   ((unsigned long)0x40001400)
-#define GCLK_ADDR    ((unsigned long)0x40001C00)
+#define PAC0_ADDR    ((u32)0x40000000)
+#define PM_ADDR      ((u32)0x40000400)
+#define MCLK_ADDR    ((u32)0x40000800)
+#define RSTC_ADDR    ((u32)0x40000C00)
+#define OSC_ADDR     ((u32)0x40001000)
+#define OSC32_ADDR   ((u32)0x40001400)
+#define GCLK_ADDR    ((u32)0x40001C00)
 /* AHB-APB Bridge B */
-#define PORTA_ADDR   ((unsigned long)0x41000000)
-#define PORTB_ADDR   ((unsigned long)0x41000080)
-#define NVM_ADDR     ((unsigned long)0x41004000)
+#define PORTA_ADDR   ((u32)0x41000000)
+#define PORTB_ADDR   ((u32)0x41000080)
+#define NVM_ADDR     ((u32)0x41004000)
 /* AHB-APB Bridge C */
-#define EVSYS_ADDR   ((unsigned long)0x42000000)
+#define EVSYS_ADDR   ((u32)0x42000000)
+
+void hw_init(void);
 
 /**
  * @brief Read the value of a 32bits memory mapped register
  *
  * @param  reg Address of the register to read
- * @return unsigned long Value of the register (32 bits)
+ * @return u32 Value of the register (32 bits)
  */
-static inline unsigned long reg_rd(unsigned long reg)
+static inline u32 reg_rd(u32 reg)
 {
-	return( *(volatile unsigned long *)reg );
+	return( *(volatile u32 *)reg );
 }
 
 /**
  * @brief Read the value of a 8bits memory mapped register
  *
  * @param  reg Address of the register to read
- * @return unsigned char  Value of the register (8 bits)
+ * @return u8  Value of the register (8 bits)
  */
-static inline unsigned char reg8_rd(unsigned long reg)
+static inline u8 reg8_rd(u32 reg)
 {
-	return( *(volatile unsigned char *)reg );
+	return( *(volatile u8 *)reg );
 }
 
 /**
  * @brief Read the value of a 16bits memory mapped register
  *
  * @param  reg Address of the register to read
- * @return unsigned short Value of the register (16 bits)
+ * @return u16 Value of the register (16 bits)
  */
-static inline unsigned short reg16_rd(unsigned long reg)
+static inline u16 reg16_rd(u32 reg)
 {
-	return( *(volatile unsigned short *)reg );
+	return( *(volatile u16 *)reg );
 }
 
 /**
@@ -70,9 +73,9 @@ static inline unsigned short reg16_rd(unsigned long reg)
  * @param reg   Address of the register to update
  * @param value New value to write into the register
  */
-static inline void reg_wr(unsigned long reg, unsigned long value)
+static inline void reg_wr(u32 reg, u32 value)
 {
-	*(volatile unsigned long *)reg = value;
+	*(volatile u32 *)reg = value;
 }
 
 /**
@@ -81,9 +84,9 @@ static inline void reg_wr(unsigned long reg, unsigned long value)
  * @param reg   Address of the register to update
  * @param value New (16 bits) value to write into the register
  */
-static inline void reg16_wr (unsigned long reg, unsigned short value)
+static inline void reg16_wr (u32 reg, u16 value)
 {
-	*(volatile unsigned short *)reg = value;
+	*(volatile u16 *)reg = value;
 }
 
 /**
@@ -92,9 +95,9 @@ static inline void reg16_wr (unsigned long reg, unsigned short value)
  * @param reg   Address of the register to update
  * @param value New (8 bits) value to write into the register
  */
-static inline void reg8_wr(unsigned long reg, unsigned char value)
+static inline void reg8_wr(u32 reg, u8 value)
 {
-	*(volatile unsigned char *)reg = value;
+	*(volatile u8 *)reg = value;
 }
 
 /**
@@ -103,9 +106,9 @@ static inline void reg8_wr(unsigned long reg, unsigned char value)
  * @param reg   Address of the register to update
  * @param value Mask of bits to set into the register
  */
-static inline void reg_set(unsigned long reg, unsigned long value)
+static inline void reg_set(u32 reg, u32 value)
 {
-	*(volatile unsigned long *)reg = (*(volatile unsigned long *)reg | value);
+  *(volatile u32 *)reg = (*(volatile u32 *)reg | value);
 }
 
 #endif
